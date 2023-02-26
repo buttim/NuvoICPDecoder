@@ -97,7 +97,6 @@ class Decoder(srd.Decoder):
 				if pins[Pin.CLK]==1:
 					self.risingClockSample=self.samplenum
 					if self.nbits==0: self.startWordSample=self.samplenum
-				else:
 					self.data<<=1
 					self.data+=pins[Pin.DAT]
 					self.nbits+=1
