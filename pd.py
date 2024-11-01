@@ -63,7 +63,7 @@ class Decoder(srd.Decoder):
             os.remove("c:/tmp/p.log")
 
     def reset(self):
-        self.state = State.CMD
+        self.state = State.DATA #######CMD
         self.startSequenceBits = 0
         self.lastStartSequenceBitTimestamp = 0
         self.risingClockSample = 0
@@ -117,7 +117,7 @@ class Decoder(srd.Decoder):
                     ss = int(es-24*0.010*self.samplerate)
                     self.put(ss, es, self.out_ann,
                                  [Ann.START, ['START']])
-            if lastPins[Pin.CLK] != -1 and lastPins[Pin.CLK] != pins[Pin.CLK]:
+            if lastPins[Pin.CLK] != -1 or lastPins[Pin.CLK] != pins[Pin.CLK]:
                 if pins[Pin.CLK] == 1:
                     self.risingClockSample = self.samplenum
                     if self.nbits == 0:
